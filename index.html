@@ -93,10 +93,10 @@
 
         <!-- intro
         ================================================== -->
-        <section id="intro" class="s-intro">
+        <section id="intro" class="s-intro s-background">
 
-            <div class="row">
-                <div class="column lg-12 s-intro__content">
+            <div class="name-row">
+                <div class="column s-intro__content">
 
                     <div class="s-intro__text">
                         <h1 class="s-intro__text-huge animate-on-load">
@@ -104,12 +104,16 @@
                         </h1>
                         <h3 class="animate-on-load">Software Developer</h3>
                     </div>
-
+                </div>
+                <div class="s-intro__collage">
                     <div class="s-intro__bg"></div>
-
+                    <div class="s-intro__bg"></div>
+                    <div class="s-intro__bg"></div>
+                    <div class="s-intro__bg"></div>
+                    <div class="s-intro__bg"></div>
+                    <div class="s-intro__bg"></div>
                 </div>
             </div>
-
         </section> <!-- end s-intro -->
 
 
@@ -119,15 +123,13 @@
             <div class="s-about__block s-about__intro">
 
                 <div class="row">
-                    <div class="column lg-12">
+                    <div class="column lg-12 center_about">
                         <p class="text-huge-title">
                             About Me
                         </p>
-    
-                        <p class="attention-getter animate-on-load">
-                            I leverage my five years of professional software development experience as a fullstack developer to create user-friendly and data-rich applications that meet the needs of external and internal clients
-                        </p>
-                        <p class="attention-getter animate-on-load">
+                        <hr>
+                        <p class="attention-getter animate-on-load drop-cap">
+                            I leverage my five years of professional software development experience as a fullstack developer to create user-friendly and data-rich applications that meet the needs of external and internal clients.
                             My core competencies include data visualization and reporting, developing workflows, query optimization, user permissions and management, and data safety. I have hands-on experience with MS Report Builder, graph visualizations, data processing and management from .XLS uploads and external API syncs, and DocuSign integrations
                         </p>
                         <p class="attention-getter animate-on-load">
@@ -143,18 +145,19 @@
 
         <!-- career
         ================================================== -->
-        <section id="career" class="s-career s-about">
-            <div class="s-about__block s-about__career">
+        <section id="career" class="s-career">
+            <div class="s-career__block">
 
                 <div class="row s-about__career-header">
                     <div class="column lg-12">
                         <p class="text-huge-title">
                             Career
                         </p>
+                        <hr>
                 </div>
 
-                <div class="row s-about__timeline" data-animate-block>
-                    <div class="column lg-12 stack-on-900 s-about__timeline-section" data-animate-el>
+                <div class="row s-career__timeline" data-animate-block>
+                    <div class="column lg-12 stack-on-900 s-career__timeline-section" data-animate-el>
     
                         <h2 class="text-subtitle">
                             Work Experience
@@ -243,58 +246,7 @@
                 </div> <!-- end about__timeline -->
             </div> <!-- end s-about__career -->
         </section> <!-- end s-career -->
-
-        <!-- skills
-        ================================================== --> 
-        <section id="skills" class="s-about"></section>
-            <div class="s-about__block s-about__career"></div>
-                <div class="row s-about__skills" data-animate-block>
-                    <div class="column lg-12" data-animate-el>
-    
-                        <h2 class="text-huge-title">
-                            Skills & Expertise
-                        </h2>
-    
-                        <ul class="skill-bars">
-                            <li>
-                            <div class="progress percent60"></div>
-                            <strong>HTML & CSS</strong>
-                            </li>
-                            <li>
-                            <div class="progress percent75"></div>
-                            <strong>Javascript</strong>
-                            </li>
-                            <li>
-                            <div class="progress percent60"></div>
-                            <strong>Angular</strong>
-                            </li>
-                            <li>
-                            <div class="progress percent75"></div>
-                            <strong>Typescript</strong>
-                            </li>
-                            <li>
-                            <div class="progress percent85"></div>
-                            <strong>C#</strong>
-                            </li>
-                            <li>
-                            <div class="progress percent85"></div>
-                            <strong>.NET</strong>
-                            </li>
-                            <li>
-                            <div class="progress percent85"></div>
-                            <strong>Azure DevOps</strong>
-                            </li>
-                            <li>
-                            <div class="progress percent75"></div>
-                            <strong>SQL</strong>
-                            </li>
-                        </ul>
-    
-                    </div>
-                </div> <!-- end s-about__skills -->
-            </div> <!-- end s-about__career -->
-        </section> <!-- end s-about -->
-
+        
         <!-- # site footer
         ================================================== -->
         <footer id="colophon" class="s-footer">
@@ -302,28 +254,22 @@
             <div class="row s-footer__contact-header">
                 <div class="column lg-12">
                     <h2 class="text-huge-title">Contact</h2>
-
+                    <hr>
                     <p class="text-large-title">
-                        Open to most communication, questions, job offers, or opportunities. No spam please.
-                    </p>
-                    <p>Hablo Español!</p>
+                        Open to most communication, questions, job offers, or opportunities. No spam please. Hablo Español!</p>
                 </div>
             </div> <!-- end s-footer__content -->
 
             <div class="row s-footer__contact-content">
 
                 <div class="column lg-5 md-6 stack-on-900 left-block">
-                    <p>
                     <div class="s-footer__buttons">
                         <a href="mailto:temp@email.com" class="btn btn--primary u-fullwidth">Contact Me</a>
                         <a href="#0" class="btn btn--stroke u-fullwidth">CV</a>
                     </div>
-
-                    </p>
                 </div>
 
                 <div class="column lg-4 md-5 stack-on-900 right-block">
-
                     <div class="s-footer__contact-info" >
                         <h2 class="text-subtitle">
                             Business Inquiries
@@ -337,8 +283,9 @@
                         <h2 class="text-subtitle">
                             Connect
                         </h2>
-                        <ul class="link-list">
+                        <ul class="link-list inline-list">
                             <li><a href="https://www.linkedin.com/in/emundo-trivelli-8b7600ab/">LinkedIn</a></li>
+                            <li>|</li>
                             <li><a href="https://github.com/EmundoT">Github</a></li>
                         </ul>
                     </div>
