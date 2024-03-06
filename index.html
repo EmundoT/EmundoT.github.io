@@ -20,9 +20,9 @@
 
     <!-- favicons
     ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="e.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="e.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="e.png">
     <link rel="manifest" href="site.webmanifest">
 
 </head>
@@ -59,7 +59,7 @@
                 <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
             </div> <!-- end s-header__block -->
 
-            <div class="row s-header__nav-wrap">
+            <div class="row-header s-header__nav-wrap">
 
                 <nav class="s-header__nav">
                     <ul>
@@ -124,7 +124,7 @@
 
                 <div class="row">
                     <div class="column lg-12 center_about">
-                        <p class="text-huge-title">
+                        <p class="text-huge-title animate-on-load">
                             About Me
                         </p>
                         <hr>
@@ -143,55 +143,6 @@
             </div> <!-- end s-about__intro -->
         </section> <!-- end s-about -->
 
-        <!-- skills
-        ================================================== -->
-        <section id="skills" class="s-skills">
-            <div class="row s-about__skills" data-animate-block>
-                <div class="column lg-12" data-animate-el>
-
-                    <p class="text-huge-title">
-                        Skills & Expertise
-                    </p>
-
-                    <ul class="skill-bars">
-                        <li>
-                        <div class="progress percent95"></div>
-                        <strong>HTML & SCSS</strong>
-                        </li>
-                        <li>
-                        <div class="progress percent85"></div>
-                        <strong>Javascript ES6+</strong>
-                        </li>
-                        <li>
-                        <div class="progress percent70"></div>
-                        <strong>React</strong>
-                        </li>
-                        <li>
-                        <div class="progress percent75"></div>
-                        <strong>Node JS</strong>
-                        </li>
-                        <li>
-                        <div class="progress percent85"></div>
-                        <strong>Wordpress</strong>
-                        </li>
-                        <li>
-                        <div class="progress percent90"></div>
-                        <strong>Figma</strong>
-                        </li>
-                        <li>
-                        <div class="progress percent85"></div>
-                        <strong>Sketch</strong>
-                        </li>
-                        <li>
-                        <div class="progress percent75"></div>
-                        <strong>Illustrator</strong>
-                        </li>
-                    </ul>
-
-                </div>
-            </div> <!-- end s-about__skills -->
-        </section>
-
         <!-- career
         ================================================== -->
         <section id="career" class="s-career">
@@ -205,7 +156,7 @@
                         <hr>
                 </div>
 
-                <div class="row s-career__timeline" data-animate-block>
+                <div class="s-career__timeline" data-animate-block>
                     <div class="column lg-12 stack-on-900 s-career__timeline-section" data-animate-el>
     
                         <h2 class="text-subtitle">
@@ -258,14 +209,13 @@
     
                     </div> <!-- end s-about__timeline-section -->
     
-                    <div class="column lg-12 stack-on-900 s-about__timeline-section" data-animate-el>
+                    <div class="column lg-12 stack-on-900 s-career__timeline-section" data-animate-el>
     
                         <h2 class="text-subtitle">
                             Education
                         </h2>
     
                         <div class="timeline">
-    
                             <div class="timeline__block">
                                 <div class="timeline__bullet"></div>
                                 <div class="timeline__header">
@@ -276,7 +226,8 @@
                                     </div>
                                 </div>
                             </div>
-    
+                        </div>
+                        <div class="timeline">
                             <div class="timeline__block">
                                 <div class="timeline__bullet"></div>
                                 <div class="timeline__header">
@@ -295,6 +246,55 @@
                 </div> <!-- end about__timeline -->
             </div> <!-- end s-about__career -->
         </section> <!-- end s-career -->
+
+        <!-- skills
+        ================================================== -->
+        <section id="skills" class="s-skills">
+            <div class="row s-about__skills" data-animate-block>
+                <div class="column lg-12" data-animate-el>
+
+                    <p class="text-huge-title">
+                        Skills & Expertise
+                    </p>
+                    <hr>
+                    <ul class="skill-bars">
+                        <li>
+                        <div class="progress percent80"></div>
+                        <strong>HTML & CSS</strong>
+                        </li>
+                        <li>
+                        <div class="progress percent85"></div>
+                        <strong>Javascript and Typescript</strong>
+                        </li>
+                        <li>
+                        <div class="progress percent70"></div>
+                        <strong>Angular</strong>
+                        </li>
+                        <li>
+                        <div class="progress percent75"></div>
+                        <strong>Git</strong>
+                        </li>
+                        <li>
+                        <div class="progress percent90"></div>
+                        <strong>.NET & C#</strong>
+                        </li>
+                        <li>
+                        <div class="progress percent80"></div>
+                        <strong>SQL Server</strong>
+                        </li>
+                        <li>
+                        <div class="progress percent80"></div>
+                        <strong>Azure DevOps</strong>
+                        </li>
+                        <li>
+                        <div class="progress percent75"></div>
+                        <strong>MS Report Builder</strong>
+                        </li>
+                    </ul>
+
+                </div>
+            </div> <!-- end s-about__skills -->
+        </section>
         
         <!-- # site footer
         ================================================== -->
@@ -313,8 +313,8 @@
 
                 <div class="column lg-5 md-6 stack-on-900 left-block">
                     <div class="s-footer__buttons">
-                        <a href="mailto:temp@email.com" class="btn btn--primary u-fullwidth">Contact Me</a>
-                        <a href="#0" class="btn btn--stroke u-fullwidth">CV</a>
+                        <a href="mailto:emtheredia@gmail.com" class="btn btn--primary u-fullwidth">Contact Me</a>
+                        <a href="2023.pdf" target="_blank" class="btn btn--stroke u-fullwidth">CV</a>
                     </div>
                 </div>
 
@@ -324,7 +324,7 @@
                             Business Inquiries
                         </h2>
                         <ul class="link-list">
-                            <li><a href="mailto:sayhello@augustine.com">temp@email.com</a></li>
+                            <li><a href="mailto:sayhello@augustine.com">emtheredia@gmail.com</a></li>
                         </ul>
                     </div>
 
@@ -344,7 +344,7 @@
 
             <div class="row s-footer__bottom">
                 <div class="column ss-copyright">
-                    <span>© Copyright Augustine 2022</span> 
+                    <span>2024 @ Emundo Trivelli</span> 
                     <span>Design by <a href="https://www.styleshout.com/">StyleShout</a></span>
                 </div>
 
