@@ -87,24 +87,25 @@
  * ## colors
  * ------------------------------------------------------------------- */
 :root {
-  /* color-1(#5F9295)
-     * color-2(#2D2327)
-     */
-  --color-1: rgb(117, 95, 149);
-  --color-2: hsla(336, 13%, 16%, 1);
+  --color-1: rgba(95, 82, 127, 0.932);
+  --color-1-solid: rgb(from var(--color-1) r g b / 1);
+
+  --color-2: rgba(115, 96, 165, 0.913);
+  --color-2-solid: rgb(from var(--color-2) r g b / 1);
+
   --no-color: transparent;
 
   /* theme color variations
      */
-  --color-1-lighter: rgb(171, 155, 191);
-  --color-1-light: rgb(157, 124, 171);
-  --color-1-dark: rgb(92, 76, 118);
-  --color-1-darker: rgb(66, 56, 87);
+  --color-1-lighter: rgb(from var(--color-1) calc(r * 1.2) g b);
+  --color-1-light: rgb(from var(--color-1) calc(r * 1.1) g b);
+  --color-1-dark: rgb(from var(--color-1) calc(r * 0.9) g b);
+  --color-1-darker: rgb(from var(--color-1) calc(r * 0.8) g b);
 
-  --color-2-lighter: hsla(336, 13%, 36%, 1);
-  --color-2-light: hsla(336, 13%, 26%, 1);
-  --color-2-dark: hsla(336, 13%, 10%, 1);
-  --color-2-darker: hsla(336, 13%, 5%, 1);
+  --color-2-lighter: rgb(from var(--color-2) calc(r * 1.2) g b);
+  --color-2-light: rgb(from var(--color-2) calc(r * 1.1) g b);
+  --color-2-dark: rgb(from var(--color-2) calc(r * 0.9) g b);
+  --color-2-darker: rgb(from var(--color-2) calc(r * 0.8) g b);
 
   /* feedback colors
      * color-error(#ffd1d2), color-success(#c8e675), 
@@ -170,17 +171,18 @@
 
   /* preloader
      */
-  --color-preloader-bg: #464160;
+  --color-preloader-bg: var(--color-2-solid);
   --color-loader: var(--color-text-dark);
-  --color-loader-light: var(--color-1-lighter);
+  --color-loader-light: var(--color-text-light);
 
   /* others
      */
   --color-body: #55506843;
-  --color-header: var(--color-body)
-  --color-about: var(--color-header);
-  --color-work: var(--color-body);
-  --color-footer: var(--color-header);
+  --color-header: var(--color-2);
+  --color-intro: var(--color-body);
+  --color-about: var(--color-2);
+  --color-career: var(--color-2);
+  --color-footer: var(--color-body);
   --color-border: rgba(0, 0, 0, 0.08);
   --border-radius: 3px;
 }
@@ -606,6 +608,7 @@ textarea {
 .name-row {
   @extend .row;
   margin-left: calc(var(--gutter));
+  margin-bottom: calc(var(--gutter) * 3);
   display: flex;
   justify-content: space-around;
 }
@@ -1154,7 +1157,7 @@ textarea {
 
 .right-block {
   float: right;
-  display: inline-flex
+  display: inline-flex;
 }
 
 /* ===================================================================
@@ -3107,7 +3110,7 @@ img.u-pull-left {
   .s-header__block {
     width: 100%;
     height: var(--header-height);
-    background-color: var(--color-body);
+    background-color: var(--color-header);
     border-bottom: 1px solid var(--color-border);
     box-shadow: var(--box-shadow);
   }
@@ -3123,7 +3126,7 @@ img.u-pull-left {
     transform: scaleY(0);
     transform-origin: center top;
     padding: var(--vspace-2) 3.6rem var(--vspace-2);
-    background-color: var(--color-body);
+    background-color: var(--color-header);
     border-bottom: 1px solid var(--color-border);
     box-shadow: var(--box-shadow);
   }
@@ -3209,7 +3212,7 @@ img.u-pull-left {
   padding-top: calc(6 * var(--space));
   width: 100%;
   position: relative;
-  background-color: var(--color-work)
+  background-color: var(--color-intro);
 }
 
 .s-intro__content {
@@ -3228,6 +3231,7 @@ img.u-pull-left {
   position: relative;
   top: 0;
   left: 0;
+  margin-left: calc(var(--gutter) * 2);
 }
 
 .s-intro__text h3 {
@@ -3255,10 +3259,12 @@ img.u-pull-left {
 }
 
 .s-intro__collage {
-    width: 25%;
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: var(--gutter);
+  width: 25%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: var(--gutter);
+  margin-top: calc(var(--text-huge-size) / -3);
+  margin-left: calc(var(--gutter) * 2);
 }
 
 /* --------------------------------------------------------------------
@@ -3266,7 +3272,7 @@ img.u-pull-left {
  * -------------------------------------------------------------------- */
 .s-intro__bg {
   aspect-ratio: 1/1;
-  
+
   width: 40%;
   background-image: url(../images/intro-bg-2.jpg);
   background-repeat: no-repeat;
@@ -3286,7 +3292,6 @@ img.u-pull-left {
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, black 5%, rgba(0, 0, 0, 0) 100%);
   pointer-events: none;
   opacity: 0.12;
 }
@@ -3471,7 +3476,7 @@ img.u-pull-left {
   padding-top: var(--vspace-3);
   padding-bottom: var(--vspace-2);
   color: var(--color-white);
-  background-color: var(--color-work);
+  background-color: var(--color-career);
 }
 
 .s-career__block {
@@ -4057,7 +4062,8 @@ img.u-pull-left {
   padding-bottom: var(--vspace-2_5);
   font-weight: 300;
   position: relative;
-  }
+  background-color: var(--color-footer);
+}
 
 .s-footer .text-subtitle {
   margin-bottom: 0;
@@ -4101,7 +4107,7 @@ img.u-pull-left {
 }
 
 .s-footer__contact-content .right-block h2 {
-  line-height: calc(0.8* var(--space));
+  line-height: calc(0.8 * var(--space));
 }
 
 .s-footer__bottom {
