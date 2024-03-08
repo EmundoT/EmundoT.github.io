@@ -185,7 +185,7 @@
   --color-skills: var(--color-2);
   --color-footer: var(--color-body);
   --color-border: rgba(0, 0, 0, 0.08);
-  --border-radius: 3px;
+  --border-radius: 12px;
 }
 
 /* ------------------------------------------------------------------- 
@@ -613,7 +613,6 @@ textarea {
   max-width: var(--width-grid-max);
   margin: 0 auto;
   display: flex;
-  flex-flow: row wrap;
   margin-top: var(--vspace-1);
   margin-bottom: var(--vspace-2);
 }
@@ -2912,9 +2911,6 @@ img.u-pull-left {
 }
 
 .s-header.sticky {
-  --header-height: 8rem;
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: var(--box-shadow);
   position: fixed;
 }
 
