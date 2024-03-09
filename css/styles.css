@@ -3458,6 +3458,11 @@ img.u-pull-left {
   left: calc(var(--timeline-vertical-border-pos) + 1px);
 }
 
+.center_about li {
+  list-style: none;
+  padding-bottom: var(--gutter);
+}
+
 /* --------------------------------------------------------------------
  * ## about timelines
  * -------------------------------------------------------------------- */
