@@ -159,7 +159,7 @@
       );
       spans[i].style.backgroundColor = hexColorLightness;
       document.documentElement.style.setProperty(
-        `--swatch${i + 1}`,
+        `--gradient-swatch${i + 1}`,
         hexColorLightness
       );
     }
