@@ -149,7 +149,50 @@
     return r + ", " + g + ", " + b;
   }
 
+  function setColorGradient(hexColor) {
+    let colorGradient = document.getElementById("colorGradient");
+    let spans = colorGradient.getElementsByTagName("span");
+    for (let i = 0; i < spans.length; i++) {
+      let hexColorLightness = lightenHexColor(
+        hexColor,
+        i * (250 / spans.length)
+      );
+      spans[i].style.backgroundColor = hexColorLightness;
+      document.documentElement.style.setProperty(
+        `--swatch${i + 1}`,
+        hexColorLightness
+      );
+    }
+  }
+
+  function lightenHexColor(hexColor, percent) {
+    let [r, g, b] = hexColor
+      .substr(1)
+      .match(/.{2}/g)
+      .map((x) => parseInt(x, 16));
+    r = Math.round((r * (100 + percent)) / 100);
+    g = Math.round((g * (100 + percent)) / 100);
+    b = Math.round((b * (100 + percent)) / 100);
+    r = r > 255 ? 255 : r;
+    g = g > 255 ? 255 : g;
+    b = b > 255 ? 255 : b;
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+  }
+
   const ssColorPicker = function () {
+    function createColorGradientSpans() {
+      let colorGradient = document.getElementById("colorGradient");
+      colorGradient.innerHTML = ""; // Clear any existing spans
+      let spanCount = Math.floor(window.innerWidth / 20); // Calculate the number of spans based on the screen width
+      for (let i = 0; i < spanCount; i++) {
+        let span = document.createElement("span");
+        colorGradient.appendChild(span);
+      }
+    }
+
+    // Call the function when the page loads
+    document.addEventListener("DOMContentLoaded", createColorGradientSpans);
+
     window.addEventListener("DOMContentLoaded", function () {
       const colorPicker = document.getElementById("colorPicker");
       let rgb = getComputedStyle(document.documentElement)
@@ -157,11 +200,13 @@
         .trim()
         .split(", ");
       colorPicker.value = rgbToHex(rgb[0], rgb[1], rgb[2]);
+      setColorGradient(colorPicker.value);
 
       colorPicker.addEventListener("input", function () {
         let rgb = hexToRgb(colorPicker.value);
         if (!rgb) return;
         document.documentElement.style.setProperty("--color-2-rgb", rgb);
+        setColorGradient(colorPicker.value);
       });
     });
   };

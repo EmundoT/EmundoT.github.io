@@ -1297,6 +1297,20 @@ textarea {
   float: right;
 }
 
+#colorGradient {
+  display: flex;
+  justify-content: space-between;
+}
+
+#colorGradient span {
+  display: inline-block;
+  width: var(--border-radius);
+  height: var(--border-radius);
+  background-color: var(--color-2);
+  flex-grow: 1;
+  margin: 2px;
+}
+
 /* ===================================================================
  * # TYPOGRAPHY 
  *
@@ -3235,6 +3249,9 @@ img.u-pull-left {
   position: relative;
   width: 75%;
   flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* --------------------------------------------------------------------
