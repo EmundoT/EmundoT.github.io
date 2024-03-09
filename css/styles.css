@@ -90,8 +90,10 @@
   --color-1: rgba(95, 82, 127, 0.932);
   --color-1-solid: rgb(from var(--color-1) r g b / 1);
 
-  --color-2: rgba(115, 96, 165, 0.913);
-  --color-2-solid: rgb(from var(--color-2) r g b / 1);
+  --color-2-rgb: 115, 96, 165;
+  --opacity-2: 0.913;
+  --color-2: rgba(var(--color-2-rgb), var(--opacity-2));
+  --color-2-solid: rgb(from var(--color-2-rgb) r g b / 1);
 
   --no-color: transparent;
 
@@ -404,6 +406,11 @@ textarea {
 button,
 input {
   overflow: visible;
+}
+
+input[type="color"] {
+  border-radius: var(--border-radius);
+  width: var(--text-lg);
 }
 
 button,
@@ -1847,7 +1854,7 @@ button,
   margin-bottom: var(--vspace-0_5);
 }
 
-input,
+/* input,
 textarea,
 select,
 pre,
@@ -1864,7 +1871,7 @@ img,
 .video-container,
 .ss-custom-select {
   margin-bottom: var(--vspace-1);
-}
+} */
 
 /* ===================================================================
  * # PRELOADER
@@ -2882,6 +2889,7 @@ img.u-pull-left {
  *
  * ------------------------------------------------------------------- */
 .s-pagewrap {
+  background-color: var(--color-intro);
   --header-height: 7rem;
   display: flex;
   flex-direction: column;
@@ -3392,7 +3400,6 @@ img.u-pull-left {
   --timeline-top-adjust: calc(var(--subtitle-line-height) / 2);
   --timeline-vertical-border-pos: 8px;
 
-  color: var(--color-white);
   background-color: var(--color-about);
   transition: height 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
