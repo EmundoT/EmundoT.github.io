@@ -411,7 +411,8 @@ input {
 input[type="color"] {
   border-radius: var(--border-radius);
   width: var(--text-lg);
-  background-color: var(--color-gray-19);
+  background-color: var(--no-color);
+  border-style: none;
 }
 
 button,
@@ -1300,16 +1301,19 @@ textarea {
 
 #colorGradient {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 #colorGradient span {
+  border-radius: var(--border-radius);
   display: inline-block;
   width: var(--border-radius);
   height: var(--border-radius);
-  background-color: var(--color-2);
+  background-color: rgb(from var(--color-2) r g b / var(--factor));
   flex-grow: 1;
   margin: 2px;
+  margin-top: 6px;
 }
 
 /* ===================================================================
@@ -1377,7 +1381,6 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: var(--font-2);
   font-weight: 400;
   color: var(--color-text-dark);
   font-variant-ligatures: common-ligatures;
@@ -1396,7 +1399,6 @@ h3,
 .h3,
 h4,
 .h4 {
-  margin-top: var(--vspace-2);
   margin-bottom: var(--vspace-0_75);
 }
 
@@ -1652,7 +1654,7 @@ hr.fancy::before {
 .attention-getter {
   font-family: var(--font-1);
   font-weight: 400;
-  font-size: var(--text-lg) * 0.9;
+  font-size: calc(var(--text-lg) * 0.8);
   line-height: 1.8275;
   color: var(--color-text-dark);
 }
@@ -2198,7 +2200,7 @@ input[type="reset"].btn--primary,
 input[type="button"].btn--primary {
   background: var(--color-btn-primary);
   border-color: var(--color-btn-primary);
-  color: var(--color-btn-primary-text);
+  color: var(--color-2);
 }
 
 .btn.btn--primary:focus,
@@ -2560,8 +2562,6 @@ td:last-child {
 
 .skill-bars li::before {
   display: block;
-  content: counter(ctr, decimal-leading-zero) ".";
-  counter-increment: ctr;
   font-family: var(--font-1);
   font-size: var(--text-sm);
   font-weight: 400;
@@ -2757,7 +2757,6 @@ td:last-child {
  * ## theme-specific typography classes
  * ------------------------------------------------------------------- */
 .text-pretitle {
-  font-family: var(--font-1);
   font-size: calc(var(--text-size) * 1.1053);
   font-weight: 300;
   line-height: var(--vspace-1);
@@ -2771,7 +2770,6 @@ td:last-child {
 .text-huge-title {
   --text-huge: 9.4rem;
   --text-multiplier: 1;
-  font-family: var(--font-2);
   font-weight: 400;
   font-size: calc(var(--text-huge) * var(--text-multiplier));
   letter-spacing: -0.02em;
@@ -2780,7 +2778,6 @@ td:last-child {
 }
 
 .text-subtitle {
-  font-family: var(--font-1);
   font-size: var(--text-size);
   font-weight: 500;
   color: var(--color-text-dark);
@@ -3255,6 +3252,10 @@ img.u-pull-left {
   justify-content: center;
 }
 
+.s-intro .gradient-container {
+  margin-left: calc(var(--gutter) * 1.5);
+}
+
 /* --------------------------------------------------------------------
  * ## intro text
  * -------------------------------------------------------------------- */
@@ -3485,11 +3486,11 @@ img.u-pull-left {
 .timeline__bullet {
   display: block;
   height: 4.4rem;
-  width: 3px;
+  width: 5px;
   background-color: var(--color-text-dark);
   position: absolute;
   top: 0;
-  left: calc(var(--timeline-vertical-border-pos) - 1px);
+  left: var(--timeline-vertical-border-pos);
 }
 
 .timeline__title {
@@ -3539,9 +3540,9 @@ img.u-pull-left {
 
 .s-career__timeline-section::before {
   content: "";
-  width: 1px;
+  width: 2px;
   height: calc(100% - var(--timeline-top-adjust));
-  background-color: var(--color-border);
+  background-color: var(--color-2);
   position: absolute;
   top: var(--timeline-top-adjust);
   left: calc(var(--timeline-vertical-border-pos) + var(--gutter));
@@ -3557,9 +3558,9 @@ img.u-pull-left {
 .s-career .text-subtitle::before {
   content: "";
   display: block;
-  height: 1px;
+  height: 2px;
   width: 3.2rem;
-  background-color: var(--color-border);
+  background-color: var(--color-2);
   position: absolute;
   top: 50%;
   left: calc(var(--timeline-vertical-border-pos) + 1px);

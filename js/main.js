@@ -139,77 +139,155 @@
   }
 
   function hexToRgb(hex) {
-    if (!/^#[0-9A-F]{6}$/i.test(hex)) {
-      console.error("Invalid hex color:", hex);
-      return;
-    }
-    let r = parseInt(hex.slice(1, 3), 16),
-      g = parseInt(hex.slice(3, 5), 16),
-      b = parseInt(hex.slice(5, 7), 16);
-    return r + ", " + g + ", " + b;
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : null;
+  }
+
+  function hexToRgbString(hex) {
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(
+          result[3],
+          16
+        )}`
+      : null;
   }
 
   function setColorGradient(hexColor) {
     let colorGradient = document.getElementById("colorGradient");
+    let colorPicker = document.getElementById("colorPicker");
     let spans = colorGradient.getElementsByTagName("span");
-    for (let i = 0; i < spans.length; i++) {
-      let hexColorLightness = lightenHexColor(
-        hexColor,
-        i * (250 / spans.length)
-      );
-      spans[i].style.backgroundColor = hexColorLightness;
-      document.documentElement.style.setProperty(
-        `--gradient-swatch${i + 1}`,
-        hexColorLightness
-      );
-    }
-  }
 
-  function lightenHexColor(hexColor, percent) {
+    // Define the color picker listener
+    let colorPickerListener = function () {
+      setColorGradient(this.value);
+    };
+
+    // Add the color picker listener
+    colorPicker.addEventListener("input", colorPickerListener);
+
+    // Convert the hex color to RGB
     let [r, g, b] = hexColor
       .substr(1)
       .match(/.{2}/g)
-      .map((x) => parseInt(x, 16));
-    r = Math.round((r * (100 + percent)) / 100);
-    g = Math.round((g * (100 + percent)) / 100);
-    b = Math.round((b * (100 + percent)) / 100);
-    r = r > 255 ? 255 : r;
-    g = g > 255 ? 255 : g;
-    b = b > 255 ? 255 : b;
-    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+      .map((hex) => parseInt(hex, 16));
+
+    // Iterate over the spans
+    for (let i = 0; i < spans.length; i++) {
+      let factor;
+
+      // Determine the factor based on the position of the span
+      if (i < spans.length / 2) {
+        factor = 100 - (i << 1) * (150 / spans.length);
+      } else {
+        factor = ((i - (spans.length >> 1)) << 1) * (150 / spans.length);
+      }
+      factor = factor < 0 ? 0 : factor > 100 ? 100 : factor;
+
+      // Calculate the RGB values based on the factor
+      let rAdjusted = (r * factor) >> 8;
+      let gAdjusted = (g * factor) >> 8;
+      let bAdjusted = (b * factor) >> 8;
+
+      // Set the background color of the span
+      let hexColorAdjusted = `#${(
+        (1 << 24) +
+        (rAdjusted << 16) +
+        (gAdjusted << 8) +
+        bAdjusted
+      )
+        .toString(16)
+        .slice(1)}`;
+      spans[i].style.backgroundColor = hexColorAdjusted;
+
+      // Set the gradient swatch property
+      document.documentElement.style.setProperty(
+        `--gradient-swatch${i + 1}`,
+        hexColorAdjusted
+      );
+
+      // Add a click listener to the span
+      spans[i].addEventListener("click", function () {
+        let clickedColor = this.style.backgroundColor;
+        document.documentElement.style.setProperty("--color-2", clickedColor);
+        colorPicker.value = clickedColor;
+      });
+    }
   }
 
   const ssColorPicker = function () {
+    let colorGradient = document.getElementById("colorGradient");
+    let colorPicker = document.getElementById("colorPicker");
+    let spans = colorGradient.getElementsByTagName("span");
+    let spanCount = Math.floor(window.innerWidth / 25);
+
     function createColorGradientSpans() {
-      let colorGradient = document.getElementById("colorGradient");
       colorGradient.innerHTML = ""; // Clear any existing spans
-      let spanCount = Math.floor(window.innerWidth / 20); // Calculate the number of spans based on the screen width
+
       for (let i = 0; i < spanCount; i++) {
         let span = document.createElement("span");
+        span.style.setProperty("--factor", i / (spanCount - 1));
         colorGradient.appendChild(span);
+
+        if (i >= Math.floor(spanCount / 2)) {
+          span.classList.add("after-picker");
+        }
+
+        // Add click event listener to each span
+        span.addEventListener("click", function () {
+          let opacity = parseFloat(this.style.getPropertyValue("--factor"));
+          document.documentElement.style.setProperty("--opacity-2", opacity);
+        });
       }
+
+      spans = colorGradient.getElementsByTagName("span");
     }
 
-    // Call the function when the page loads
-    document.addEventListener("DOMContentLoaded", createColorGradientSpans);
+    function updateColorGradient() {
+      let pickedColor = hexToRgb(colorPicker.value);
+      let [r, g, b] = [pickedColor.r, pickedColor.g, pickedColor.b];
 
-    window.addEventListener("DOMContentLoaded", function () {
-      const colorPicker = document.getElementById("colorPicker");
+      document.documentElement.style.setProperty(
+        "--color-2-rgb",
+        `${r}, ${g}, ${b}`
+      );
+    }
+
+    function initialize() {
+      createColorGradientSpans();
+
       let rgb = getComputedStyle(document.documentElement)
         .getPropertyValue("--color-2-rgb")
         .trim()
         .split(", ");
       colorPicker.value = rgbToHex(rgb[0], rgb[1], rgb[2]);
-      setColorGradient(colorPicker.value);
 
-      colorPicker.addEventListener("input", function () {
-        let rgb = hexToRgb(colorPicker.value);
-        if (!rgb) return;
-        document.documentElement.style.setProperty("--color-2-rgb", rgb);
-        setColorGradient(colorPicker.value);
+      updateColorGradient();
+
+      colorPicker.addEventListener("input", updateColorGradient);
+      window.addEventListener("resize", function () {
+        spanCount = Math.floor(window.innerWidth / 25);
+        createColorGradientSpans();
+        updateColorGradient();
       });
-    });
+    }
+
+    return {
+      initialize: initialize,
+      setColorGradient: setColorGradient,
+    };
   };
+
+  function setColorGradient(hexColor) {
+    const colorPicker = ssColorPicker();
+    colorPicker.setColorGradient(hexColor);
+  }
 
   /* photoswipe
    * ----------------------------------------------------- */
@@ -417,7 +495,9 @@
     ssPreloader();
     ssMobileMenu();
     ssStickyHeader();
-    ssColorPicker();
+    const colorPicker = ssColorPicker();
+    colorPicker.initialize();
+
     ssPhotoswipe();
     ssAnimateOnScroll();
     ssSwiper();
