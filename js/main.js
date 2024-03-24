@@ -233,7 +233,9 @@
       for (let i = 0; i < spanCount; i++) {
         let span = document.createElement("span");
         span.style.setProperty("--factor", i / (spanCount - 1));
-        colorGradient.appendChild(span);
+        if (i / (spanCount - 1) <= 0.95) {
+          colorGradient.appendChild(span);
+        }
 
         if (i >= Math.floor(spanCount / 2)) {
           span.classList.add("after-picker");
